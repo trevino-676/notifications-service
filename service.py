@@ -23,7 +23,7 @@ def cretate_notification(notification: dict) -> dict:
 
 
 async def notify():
-    uri = "ws://websocket:6789"
-    async with websockets.connect(uri, verify=False) as websocket:
+    uri = "wss://ws.sonar32.com.mx"
+    async with websockets.connect(uri, ssl=True) as websocket:
         data = {"action": "notify"}
         await websocket.send(json.dumps(data))
