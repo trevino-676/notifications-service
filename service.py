@@ -43,6 +43,9 @@ def __convert_company_to_user(notification: dict):
 def cretate_notification(notification: dict) -> dict:
     notification = __convert_supplier_to_user(notification)
     notification = __convert_company_to_user(notification)
+    if "is_active" not in notification:
+        notification["is_active"] = True
+
     new_notification = collection.insert_one(notification)
     created_notification = collection.find_one({"_id": new_notification.inserted_id})
     created_notification["_id"] = str(created_notification["_id"])
