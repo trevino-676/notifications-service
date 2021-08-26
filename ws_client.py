@@ -1,14 +1,14 @@
 import ssl
 import json
-import pathlib
-from os import environ
+from os import environ, path
 
 import websockets
 
 from logger import logger
 
+BASEDIR = path.abspath(path.dirname(__file__))
 ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-certificate = pathlib.Path(__file__).with_name(environ.get("CERTIFICATE"))
+certificate = path.join(BASEDIR, environ.get("CERTIFICATE"))
 ssl_context.load_verify_locations(certificate)
 
 
