@@ -13,7 +13,7 @@ ssl_context.load_verify_locations(certificate)
 
 
 async def notify():
-    uri = environ.get("WS_URI")
+    uri = "wss://sws.sonar32.com.mx/"
     try:
         async with websockets.connect(uri, ssl=ssl_context) as ws:
             data = {"action": "notify"}
